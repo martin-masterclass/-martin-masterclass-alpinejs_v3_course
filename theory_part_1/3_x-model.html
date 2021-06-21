@@ -18,7 +18,7 @@
         <h1>
             x-model
             <span class="text-base ml-4">
-                <a target="_blank" href="https://github.com/martin-masterclass/AlpineJS_Course/commit/525fd564cb800383312db74300ba3ff5cc220268">See lecture on GitHub</a>
+                <a target="_blank" href="">See lecture on GitHub</a>
             </span>
         </h1>
         <div class="flex flex-col lg:flex-row lg:gap-16">
@@ -31,23 +31,26 @@
 
                 <!-- Example 1 -->
                 <p class="text-lg"><b>Example 1:</b>Text in Input element goes to output immediately</p>
-                <section>
-                    <input class="border border-1 p-1 rounded shadow" type="text">
-                    <span>Output: </span>
+                <section  x-data="{myInput : ''}">
+                    <input x-model="myInput" class="border border-1 p-1 rounded shadow" type="text">
+                    <span x-text="'Output: ' + myInput">Output: </span>
                 </section>
 
                 <!-- Example 2 -->
                 <p class="text-lg mt-10"><b>Example 2:</b>Text in Inputs can be influenced by both inputs</p>
-                <section>
-                    <input class="border border-1 p-1 rounded shadow" type="text">
-                    <input class="border border-1 p-1 rounded shadow" type="text">
+                <section x-data="{myValue : 'start'}">
+                    <input x-model="myValue" class="border border-1 p-1 rounded shadow" type="text">
+                    <input x-model="myValue" class="border border-1 p-1 rounded shadow" type="text">
                 </section>
 
                 <!-- Example 3 -->
                 <p class="text-lg mt-10"><b>Example 3:</b> Color of Div AND Select is influenced by chosen color.</p>
-                <section class="flex">
-                    <div class="bg-gray-600" style="height: 5rem; width: 5rem; border: 1px solid #555;"></div>
-                    <select class="bg-gray-600 h-full p-2 rounded ml-3 border border-gray-900 text-white focus:outline-none">
+                <section x-data="{
+                    myColor: 'gray',
+                    selectClasses : 'h-full p-2 rounded ml-3 border border-gray-900 text-white focus:outline-none '
+                }" class="flex">
+                    <div :class="'bg-' + myColor + '-600'" style="height: 5rem; width: 5rem; border: 1px solid #555;"></div>
+                    <select x-model="myColor" :class="selectClasses + ' bg-' + myColor + '-600'">
                         <option value="gray">Select color</option>
                         <option>green</option>
                         <option>blue</option>
