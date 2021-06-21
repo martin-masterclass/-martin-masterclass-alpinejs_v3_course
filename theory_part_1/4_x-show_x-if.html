@@ -30,9 +30,18 @@
                 <!-- Example 1: x-show, ternary expressions -->
                 <h2>x-show / x-if: Hide or show elements 2 different ways</h2>
                 <p class="text-lg"><b>Example 1:</b> Show element only with condition <b>x-show</b></p>
-                <section>
-                    <button class="transition p-1 rounded shadow focus:outline-none bg-green-300 hover:bg-green-400">Show</button>
-                    <span class="bg-gray-200 ml-3 p-2">I am supposed to be seen only when <b>show == true</b>.</span>
+                <section x-data="{ 
+                    show : false,
+                    buttonClass : 'transition p-1 rounded shadow focus:outline-none ',
+                 }">
+                    <button 
+                        x-text="!show ? 'Show' : 'Hide'" 
+                        @click="show = !show" 
+                        :class="!show ? buttonClass + 'bg-green-300 hover:bg-green-400'
+                        : buttonClass + 'bg-red-300 hover:bg-red-400'">
+                    Show
+                    </button>
+                    <span x-show="show" class="bg-gray-200 ml-3 p-2">I am supposed to be seen only when <b>show == true</b>.</span>
                     <p class="mt-2">The text and color of the button is changed with the usage of ternary expressions.</p>
                     <p>When the element is hidden, then it is still there, but it has <b>style="display:none;"</b></p>
                 </section>
@@ -40,9 +49,20 @@
                 <!-- Example 2: x-if -->
                 <h2 class="mt-10">x-if</h2>
                 <p class="text-lg"><b>Example 2:</b> Show element only with condition <b>x-if</b></p>
-                <section>
-                    <button class="transition p-1 rounded shadow focus:outline-none bg-green-300 hover:bg-green-400">Show</button>
-                    <span class="bg-gray-200 ml-3 p-2">Hi! When I am gone, you won't find me in the DOM! ;-)</span>
+                <section x-data="{ 
+                    show : false,
+                    buttonClass : 'transition p-1 rounded shadow focus:outline-none ',
+                 }">
+                    <button 
+                        x-text="!show ? 'Show' : 'Hide'" 
+                        @click="show = !show" 
+                        :class="!show ? buttonClass + 'bg-green-300 hover:bg-green-400'
+                        : buttonClass + 'bg-red-300 hover:bg-red-400'">
+                    Show
+                    </button>
+                    <template x-if="show">
+                        <span class="bg-gray-200 ml-3 p-2">Hi! When I am gone, you won't find me in the DOM! ;-)</span>
+                    </template>
                     <p class="mt-2">If you want to use <b>x-if</b> you have to wrap the element, that you want to show or hide with a <b>template-tag</b>.</p>
                     <p>In this case the element will be <b>removed completely from the DOM </b> on hide.</p>
                 </section>
