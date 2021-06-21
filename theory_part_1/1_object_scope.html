@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Object & Scope | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            Object & Scope
+            <span class="text-base ml-4">
+            <a target="_blank" href="https://github.com/martin-masterclass/AlpineJS_Course/commit/df215af869d01f9d88b65375cc3c4fd86662824f">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <p id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    NEW: x-data, x-text
+                </p>
+                <p>In this example we define some JavaScript objects. ("Variables")<br>
+                    In Alpine.js those objects are connected to HTML Elements.<br>
+                    We will connect one object to the <b>body-tag</b>, and another one to <b>div1</b>.
+                    </p>
+                    <p>
+                        <h2>Object and Scope: Where is your object visible?</h2>
+                        bodyVar: <span>placeholder</span><br>
+                    </p>
+            
+                    <div class="bg-blue-200 w-72 p-3 mb-6 rounded shadow">
+                        <b>This is Div 1</b><br><br>
+                    </div>
+                    <div class="bg-green-200 w-72 p-3 mb-6 rounded shadow">
+                        <b>This is Div 2</b><br><br>
+                    </div>
+                    <h3>Steps in this lecture</h3>
+                    <ol>
+                        <li>Define <b>x-data="{bodyObj: 'body'}"</b> in body tag.</li>
+                        <li>Output of "bodyObj" with <b>x-text="bodyObj"</b></li>
+                        <li>Defining Div-1-Object: <b>x-data="{div1obj: 'div1'}"</b></li>
+                        <li>Output of Div-1-Object in Div1</li>
+                        <li>Output of "bodyObj" in Div2</li>
+                        <li>Showing the cases that will NOT work!</li>
+                    </ol>
+            </div>
+            <div id="right" class="lg:w-1/2">
+                <h3 class="mt-0">Things to remember:</h3>
+                <ul>
+                    <li>As well as the definition, as the output of Objects are <b>bound to HTML-Elements</b> in Alpine.js</li>
+                    <li>If a variable is <b>not set</b> you can use a <b>placeholder</b>.</li>
+                    <li>Variables in JS - Objects of course can be strings, numbers, booleans but also other objects! (see next lecture)</li>
+                </ul>
+
+                <h3>Important Constraints!</h3>
+                <ul>
+                    <li>Objects can only be used in the <b>same</b> HTML-Element <b>or nested</b> HTML-Elements</li>
+                    <li>A HTML-Element <b>can only contain or output one</b> specific object.</li>
+                </ul>
+
+                <h3>What will NOT work</h3>
+                <ul>
+                    <li>Output of an object, in a <b>parent</b> element or <b>sibling</b> element.</li>
+                </ul>
+
+                <h3><span class="text-red-500">NEW</span> from Version 3 on:</h3>
+                <ul>
+                    <li><b>Scopes can be nested</b>. This was NOT possible in Version 2 of Alpinejs.</li>
+                    <li>In nested scopes properties can be <b>overwritten</b>.</li>
+                </ul>
+
+                <p><b>In Doubt, always use the console in Chrome DevTools to see if there is an error !</b></p>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

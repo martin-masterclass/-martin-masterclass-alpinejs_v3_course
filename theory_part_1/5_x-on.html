@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>X-ON | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            X-ON (@click etc.)
+            <span class="text-base ml-4">
+                <a target="_blank" href="https://github.com/martin-masterclass/AlpineJS_Course/commit/0a3e1de17d8ce449157a39425fcf9eaeea27be60">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <p id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    NEW: Shorthand-Syntax (@) for x-on, x-ref + $refs
+                </p>
+
+                <h2>x-on: Events can change an object</h2>
+                <!-- Example 1: @click -->
+                <h3>Example1: @click</h3>
+                <p class="text-lg">Reset value of object on click</p>
+                <section>
+                    <input class="border border-1 p-1 rounded shadow" type="text">
+                    <span>Output</span>
+                    <span class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>
+                </section>
+
+                <!-- Example 2: @mouseenter, @click.outside (former @click.away in Alpinejs 2.x) -->
+                <h3 class="mt-8">Example2: @mouseenter, @click.away</h3>
+                <p class="text-lg">Show Submenu and hide it on @click.outside (former ".away")</p>
+                <section class="relative">
+                    <div id="button" class="bg-blue-200 hover:bg-blue-300 inline-block px-2 py-1 cursor-pointer">Open Menu</div>
+                    <div class="mt-2" id="submenu">
+                        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.google.com">Google</a><br>
+                        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.amazon.com">Amazon</a><br>
+                    </div>
+                </section>
+
+                <!-- Example 3: @keyup -->
+                <h3 class="mt-8">Example3: @keyup + x-ref + $refs</h3>
+                <p class="text-lg">Count characters in input</p>
+                <section>
+                    <input placeholder="Enter Username (max. 10 Char)" class="border border-1 p-1 w-60 rounded shadow" maxlength="10" type="text">
+                    <br>
+                    <span></span>
+                </section>
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+                <h3 class="mt-0">Steps Example 1</h3>
+                <ol>
+                    <li>Give the section a <b>x-data="{myInput : ''}"</b></li>
+                    <li>Give the first <i>span</i> <b>x-text="'Output: ' + myInput"</b></li>
+                    <li>Connect the input with the object via <b>x-model="myInput"</b></li>
+                    <li>Give the <i>second span = button</i> an event handler to empty the object:<br><b>@click="myInput = ''"</b></li>
+                </ol>
+                <h3>Steps Example 2</h3>
+                <ol>
+                    <li>Give the section a <b>x-data="{open : false}</b></li>
+                    <li>Make the div with the submenu dependent on the object <i>open</i>, by giving it<br><b>x-show="open"</b> </li>
+                    <li>Give the <i>"button div"</i> a <b>@mouseenter="open = true"</b> to open submenu on mouseenter.</li>
+                    <li>Give the <i>"button div"</i> a <b>@click.outside="open = false"</b> to close submenu by clicking anywhere outside of the button.</li>
+                </ol>
+                <h3>Steps Example 3</h3>
+                <ol>
+                    <li>Give the section a <b>x-data="{remaining: 10}"</b> to preset the number of remaining characters.</li>
+                    <li>Give the <i>span</i> a <b>x-text="remaining + ' characters remaining'"</b> to output the remaining characters with the object "<i>remaining</i>"</li>
+                    <li>Give the input a <b>x-ref="username"</b> to be able to reference the value's length in the next step.</li>
+                    <li>Give the input <b>@keyup="remaining = 10-$refs.username.value.length"</b>, to update the object <i>"remaining"</i></li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 text-sm container z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

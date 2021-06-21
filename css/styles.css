@@ -1,0 +1,41 @@
+h1 {
+  font-size: 2rem;
+  margin: 0.7rem 0;
+}
+h2 {
+  font-size: 1.3rem;
+  font-weight:600;
+  margin: 2.5rem 0 1rem 0;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.5rem 0;
+  font-weight: 400;
+  font-style: italic;
+}
+
+p {
+  margin-bottom: 0.7rem;
+}
+
+a {
+  cursor: pointer;
+  color: blue;
+}
+
+ul, ol {
+  margin: 0.7rem 0 1.8rem 0;
+}
+
+ul > li {
+  list-style: disc;
+  margin-left: 1.6rem;
+  margin-bottom: 0.7rem;
+}
+
+ol > li {
+  list-style: decimal;
+  margin-left: 1.6rem;
+  margin-bottom: 0.7rem;
+}

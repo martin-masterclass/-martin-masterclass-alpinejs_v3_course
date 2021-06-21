@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>x-show / x-if | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            x-show / x-if
+            <span class="text-base ml-4">
+                <a target="_blank" href="https://github.com/martin-masterclass/AlpineJS_Course/commit/02ded48e30da04a38c2881256958ccee090b30c9">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <p id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    NEW: x-show, ternary expressions, x-if
+                </p>
+                
+                <!-- Example 1: x-show, ternary expressions -->
+                <h2>x-show / x-if: Hide or show elements 2 different ways</h2>
+                <p class="text-lg"><b>Example 1:</b> Show element only with condition <b>x-show</b></p>
+                <section>
+                    <button class="transition p-1 rounded shadow focus:outline-none bg-green-300 hover:bg-green-400">Show</button>
+                    <span class="bg-gray-200 ml-3 p-2">I am supposed to be seen only when <b>show == true</b>.</span>
+                    <p class="mt-2">The text and color of the button is changed with the usage of ternary expressions.</p>
+                    <p>When the element is hidden, then it is still there, but it has <b>style="display:none;"</b></p>
+                </section>
+
+                <!-- Example 2: x-if -->
+                <h2 class="mt-10">x-if</h2>
+                <p class="text-lg"><b>Example 2:</b> Show element only with condition <b>x-if</b></p>
+                <section>
+                    <button class="transition p-1 rounded shadow focus:outline-none bg-green-300 hover:bg-green-400">Show</button>
+                    <span class="bg-gray-200 ml-3 p-2">Hi! When I am gone, you won't find me in the DOM! ;-)</span>
+                    <p class="mt-2">If you want to use <b>x-if</b> you have to wrap the element, that you want to show or hide with a <b>template-tag</b>.</p>
+                    <p>In this case the element will be <b>removed completely from the DOM </b> on hide.</p>
+                </section>
+
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+                <h3 class="mt-0">Steps Example 1</h3>
+                <ol>
+                    <li>Give the section an object <b>x-data="{show : false}"</b></li>
+                    <li>Make the visibility of the span dependent on the object <i>show</i> by giving it a <b>x-show="show"</b>, and try it out.</li>
+                    <li>Give the button a <b>@click="show = !show;"</b>, to toggle the visibility on click.</li>
+                    <li>Change the text on the button dependent on <i>show</i>, by giving it a <b>x-text="!show ? 'Show' : 'Hide'"</b></li>
+                    <li>Extract the basic button classes (without the color) into a second property of your <i>"section-object"</i>: <b>buttonClass: 'transition p-1 rounded shadow focus:outline-none '</b>, don't forget a space at the end!</li>
+                    <li>Make the button color dynamic and dependent on <i>show</i>, by concatenating different color classes with the help of a ternary expression like this:<br>
+                    <b>:class="!show ? buttonClass + 'bg-green-300 hover:bg-green-400' : buttonClass + 'bg-red-300 hover:bg-red-400'"</b></li>
+                    <li>Test everything and open Chrome DevTools. In DevTools observe how the span gets a style of <b>display: none</b>, when you click on the <i>Hide</i>.</li>
+                </ol>
+                <h3>Steps Example 2</h3>
+                <ol>
+                    <li>Copy the complete Example 1 into Example 2.</li>
+                    <li>Wrap the span that you want to show/ hide with a <b>Template-Tag</b></li>
+                    <li>Give the starting <i>template-tag</i> <b>x-if="show"</b>.</li>
+                    <li>Test the example and open Chrome DevTools.</li>
+                    <li>In DevTools observe how the complete HTML appears/ disappears on Show/ Hide.</li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

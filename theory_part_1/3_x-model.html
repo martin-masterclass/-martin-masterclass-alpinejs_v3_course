@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>x-model | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            x-model
+            <span class="text-base ml-4">
+                <a target="_blank" href="https://github.com/martin-masterclass/AlpineJS_Course/commit/525fd564cb800383312db74300ba3ff5cc220268">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <p id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <b>x-model</b>: The Value of element(s) and the value of an object (data) influence each other.
+                    <b>This is 2-Way-Binding!</b>
+                </p>
+                <h2>x-model: set object value to input value</h2>
+
+                <!-- Example 1 -->
+                <p class="text-lg"><b>Example 1:</b>Text in Input element goes to output immediately</p>
+                <section>
+                    <input class="border border-1 p-1 rounded shadow" type="text">
+                    <span>Output: </span>
+                </section>
+
+                <!-- Example 2 -->
+                <p class="text-lg mt-10"><b>Example 2:</b>Text in Inputs can be influenced by both inputs</p>
+                <section>
+                    <input class="border border-1 p-1 rounded shadow" type="text">
+                    <input class="border border-1 p-1 rounded shadow" type="text">
+                </section>
+
+                <!-- Example 3 -->
+                <p class="text-lg mt-10"><b>Example 3:</b> Color of Div AND Select is influenced by chosen color.</p>
+                <section class="flex">
+                    <div class="bg-gray-600" style="height: 5rem; width: 5rem; border: 1px solid #555;"></div>
+                    <select class="bg-gray-600 h-full p-2 rounded ml-3 border border-gray-900 text-white focus:outline-none">
+                        <option value="gray">Select color</option>
+                        <option>green</option>
+                        <option>blue</option>
+                        <option>red</option>
+                    </select>
+                </section>
+
+                <h3 class="mt-8">Take Away:</h3>
+                <ul>
+                    <li>
+                        <b>x-text</b> and <b>x-bind(:)</b> can use  <u>concatenation</u>, eg.:<br>
+                        <i>x-text="'Output: ' + myInput"</i><br>
+                        <i>:class="selectClasses + ' bg-' + myColor + '-600'"</i>
+                    </li>
+                </ul>
+
+                <h3>Reference</h3>
+                <ul>
+                    <li><a target="_blank" href="https://tailwindcss.com/docs/customizing-colors">Color system of Tailwind CSS</a></li>
+                </ul>
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+                <h3 class="mt-0">Steps Example 1</h3>
+                <ol>
+                    <li>Give the section <b>x-data="{myInput : ''}"</b></li>
+                    <li>Give the span <b>x-text="'Output: ' + myInput"</b></li>
+                    <li>Give the input <b>x-model="myInput"</b></li>
+                </ol>
+                <h3>Steps Example 2</h3>
+                <ol>
+                    <li>Give the section <b>x-data="{myValue : 'start'}"</b></li>
+                    <li>Give BOTH the inputs <b>x-model="myValue"</b></li>
+                </ol>
+                <h3>Steps Example 3</h3>
+                <ol>
+                    <li>Give the section a <b>x-data</b> with <b>myColor: 'gray',</b></li>
+                    <li>Add another key <b>selectClasses: ''</b> to this <i>x-data</i></li>
+                    <li>Now cut out all the classes BUT the <i>bg-gray-600</i> and put it into the value for the key <i>selectClasses</i>.</li>
+                    <li>The <i>bg-gray-600</i> you can delete.</li>
+                    <li>Now bind the color of the <i>div</i> with: <b>:class="'bg-' + myColor + '-600'"</b></li>
+                    <li>Now bind the color of the <i>select</i> with: <b>:class="selectClasses + ' bg-' + myColor + '-600'"</b></li>
+                    <li>Connect the <i>select value</i> to the <i>object "myColor"</i> with <b>x-model="myColor"</b></li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>x-bind(:) | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            x-bind(:)
+            <span class="text-base ml-4">
+                <a target="_blank" href="https://github.com/martin-masterclass/AlpineJS_Course/commit/b1495055b923f796437afa29959ac4fbbff68ba6">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <p id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    NEW: x-bind(:)<br>
+                    <b>x-bind</b>: Sets value of HTML attribute, e.g. <i>value, style, class</i>  etc." 
+                </p>
+                <h2>x-bind (:) - manipulate HTML attributes</h2>
+                <!-- Example 1 -->
+                <p class="text-lg"><b>Example 1:</b> Set value of input with object value</p>
+                <input class="border border-1 p-1 rounded shadow" value="" placeholder="some placeholder" type="text">
+                <span class="italic text-sm">Input value is bound to "myVar"</span>
+                <!-- Example 2 -->
+                <p class="text-lg mt-8"><b>Example 2:</b> Set style attribute</p>
+                <span>Some text</span><br>
+                <span class="italic text-sm">font-weight is set by "myStyle"</span>
+                <!-- Example 3 -->
+                <p class="text-lg mt-8"><b>Example 3:</b> Set class attribute</p>
+                <div style="height: 4rem; width: 4rem; border: 1px solid black;"></div>
+                <span class="italic text-sm">background-color is set by "myClass"</span>
+            </div>
+            <div id="right" class="lg:w-1/2">
+                <h3 class="mt-0">Steps Example 1</h3>
+                <ol>
+                    <li>In Input define <b>x-data="{ myVar: 'new text'}"</b> and then bind: <b>:value="myVar"</b></li>
+                </ol>
+                <h3>Steps Example 2</h3>
+                <ol>
+                    <li>In Span define <b>x-data="{ myStyle : 'font-weight:700'}"</b> and then bind: <b>:style="myStyle"</b></li>
+                </ol>
+                <h3>Steps Example 3</h3>
+                <ol>
+                    <li>In Div define <b>x-data="{ myClass : 'bg-blue-500'}"</b> and then bind: <b>:class="myClass"</b></li>
+                </ol>
+                <h3>Things to remember:</h3>
+                <ul>
+                    <li>Always use a colon (:) instead of <i>x-bind</i> - it's easier!</li>
+                </ul>
+
+                <h3>Reference</h3>
+                <ul>
+                    <li><a target="_blank" href="https://tailwindcss.com/docs/customizing-colors">Color system of Tailwind CSS</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>
