@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
     <title>Object & Scope | Alpine.js</title>
 </head>
-<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+<body x-data="{bodyObj: 'body'}" class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
     <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
         <div>
             <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
@@ -32,14 +32,32 @@
                     </p>
                     <p>
                         <h2>Object and Scope: Where is your object visible?</h2>
-                        bodyVar: <span>placeholder</span><br>
+                        bodyVar: <span x-text="bodyObj">placeholder</span><br>
+                        <!--Div 1 Obj (does not work => Parent Scope): <span x-text="div1obj"></span> -->
                     </p>
             
-                    <div class="bg-blue-200 w-72 p-3 mb-6 rounded shadow">
-                        <b>This is Div 1</b><br><br>
+                    <!-- DIV 1 (Blue) -->
+                    <div x-data="{div1obj: 'div1'}" class="bg-blue-200 w-144 relative p-3 mb-6 rounded shadow">
+                        <b>This is Div 1</b><br>
+                        <span x-text="div1obj"></span>
+                        <br>
+                        <div
+                        x-data="{
+                            nested: 'hello',
+                            div1obj: 'I am overwritten'
+                        }" 
+                        class="bg-white absolute top-2 right-2">
+                        <span x-text="nested"></span><br>
+                        <span x-text="div1obj"></span>
+                        </div>
                     </div>
+
+                    <!-- DIV 2 (Green) -->
                     <div class="bg-green-200 w-72 p-3 mb-6 rounded shadow">
-                        <b>This is Div 2</b><br><br>
+                        <b>This is Div 2</b><br>
+                        <span x-text="bodyObj"></span>
+                        <br>
+                        <!--Div 1 Obj (does not work => Sibling): <span x-text="div1obj">df</span>-->
                     </div>
                     <h3>Steps in this lecture</h3>
                     <ol>
