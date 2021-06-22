@@ -34,10 +34,15 @@
                 </div>
 
                 
-                <section class="mt-12">
-                    <input placeholder="Enter Number" class="border border-1 border-gray-900 p-1 rounded" type="number">
+                <section x-data="{
+                    num1 : '', 
+                    num2 : '',
+                    operator : '',
+                }" class="mt-12">
+                    
+                <input x-model="num1" placeholder="Enter Number" class="border border-1 border-gray-900 p-1 rounded" type="number">
 
-                    <select class="border border-1 border-gray-900 p-1 rounded mx-2">
+                    <select x-model="operator" class="border border-1 border-gray-900 p-1 rounded mx-2">
                         <option value="">Choose</option>
                         <option> + </option>
                         <option> - </option>
@@ -45,12 +50,17 @@
                         <option> / </option>
                     </select>
 
-                    <input placeholder="Enter Number" class="border border-1 border-gray-900 p-1 rounded" type="number">
+                    <input x-model="num2" placeholder="Enter Number" class="border border-1 border-gray-900 p-1 rounded" type="number">
 
                     <br><br>
 
-                        <span class="text-lg font-bold">Result: </span>
-                        <span class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>
+                        <template x-if="num1 != '' && num2 != '' && operator != ''">
+                            <div>
+                                <span x-text="'Result: ' + eval(num1 + operator + num2)" class="text-lg font-bold">Result: </span>
+                                <span @click="num1 = ''; num2 = ''; operator= '';" class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>   
+                            </div>
+                        </template>
+                        
 
                 </section>
 
