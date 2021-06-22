@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Simple Calculator | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            Alpine.js challenge: Simple Calculator
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-2/5">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <b>Objectives:</b>
+                    <ol class="mb-0 mt-1">
+                        <li class="mb-1">The 2 numbers in the left and right input are "connected" with the chosen operator in the middle.</li>
+                        <li class="mb-1">The result is shown underneath where it says "Result:".</li>
+                        <li class="mb-0">Display (and calculation) only occurs when the 3 fields have non empty value.</li>
+                        <li class="mb-1">Reset inputs, selcect and result with reset button.</li>
+                    </ol>
+                </div>
+
+                
+                <section class="mt-12">
+                    <input placeholder="Enter Number" class="border border-1 border-gray-900 p-1 rounded" type="number">
+
+                    <select class="border border-1 border-gray-900 p-1 rounded mx-2">
+                        <option value="">Choose</option>
+                        <option> + </option>
+                        <option> - </option>
+                        <option> * </option>
+                        <option> / </option>
+                    </select>
+
+                    <input placeholder="Enter Number" class="border border-1 border-gray-900 p-1 rounded" type="number">
+
+                    <br><br>
+
+                        <span class="text-lg font-bold">Result: </span>
+                        <span class="ml-2 bg-blue-200 p-2 rounded border border-1 cursor-pointer">Reset</span>
+
+                </section>
+
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-3/5">
+                <h2 class="mt-0">Instructions</h2>
+                <ol>
+                    <li>Give the surrounding section a <b>x-data</b>, an object with the 3 keys <b>num1, num2</b> and <b>operator</b><br>All those keys have a default of an empty string.</li>
+                    <li>Connect the 2 inputs +  the select with <b>x-model</b> to <i>num1, num2</i> and <i>operator</i>.</li>
+                    <li>Display the result with <b>x-text</b> after "Result" by using concatenation.<br>
+                    Use <b>eval(num1 + operator + num2)</b> to calculate the result on the fly.
+                    </li>
+                    <li>Make sure that no error can occur, by putting the span for the result AND (seperately) the span for the Reset button each inside of a <b>template tag</b>. In those template tags use <b>x-if</b> with the condition:<br><b>num1 != '' && num2 != '' && operator != ''</b>.</li>
+                    <li>Use the <b>reset button</b> with <b>@click</b> to reset the inputs and the select and the result object.</li>
+                </ol>
+            </div>
+        </div>
+
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

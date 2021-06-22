@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Color Slider| Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            Alpine.js challenge: Color Slider
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-2/5">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <b>Objectives:</b>
+                    <ol class="mb-0 mt-1">
+                        <li class="mb-1">Output of decimal values when one of the sliders is moved.</li>
+                        <li class="mb-1">On the fly concatenation to RGB color value with display of the value and application in div. The dynamic result will be e.g.<br><b>background-color='#A033AC'</b></li>
+                    </ol>
+                </div>
+
+                <section class="mt-8 flex items-center">
+                    <div id="sliders">
+                        <!-- Slider for Red -->
+                        <div class="flex items-center mb-5">
+                            <div class="h-5 w-5 bg-red-500 mr-3"></div>
+                            <input id="red" min="0" max="255" type="range" class="mr-3">
+                            <input class="w-10 p-1 mr-3" placeholder="Dec." type="text">
+                            <input class="w-10 p-1" placeholder="Hex." type="text">
+                        </div>
+                        <!-- Slider for Green -->
+                        <div class="flex items-center mb-5">
+                            <div class="h-5 w-5 bg-green-500 mr-3"></div>
+                            <input id="green" min="0" max="255" type="range" class="mr-3">
+                            <input class="w-10 p-1 mr-3" placeholder="Dec." type="text">
+                            <input class="w-10 p-1" placeholder="Hex." type="text">
+                        </div>
+                        <!-- Slider for blue-->
+                        <div class="flex items-center">
+                            <div class="h-5 w-5 bg-blue-500 mr-3"></div>
+                            <input id="blue" min="0" max="255" type="range" class="mr-3">
+                            <input class="w-10 p-1 mr-3" placeholder="Dec." type="text">
+                            <input class="w-10 p-1" placeholder="Hex." type="text">
+                        </div>
+                    </div>
+                    <div id="result" class="ml-12 w-24 h-24 border border-1 border-gray-600"></div>
+                </section>
+                <p class="mt-4">In this example you can create<br>255 x 255 x 255 = <b>16.581.375</b> different colors.</p>
+                <p class="mt-4">Todos:
+                    <ol>
+                        <li>Fix problem for one digit Hex values</li>
+                        <li>Make it possible to enter Hex values manually</li>
+                        <li>Avoid "NAN problem" when an input is made empty</li>
+                    </ol>
+                </p>
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-3/5">
+                <h2 class="mt-0">Instructions</h2>
+                <ol>
+                    <li>Give the section an <b>x-data</b> with the 3 properties <i>red, green</i> and <i>blue</i>, and give each of them a default of '128' (as a string).</li>
+                    <li>Give the 3 slider inputs AND also the inputs for the decimal value each a x-model with the according color, e.g.: <b>x-model="red"</b>.<br>
+                    Now you can already see the value of '128' in each input. You can move each slider and see how the value changes and vice versa you can also change the number in the decimal input to move the slider.</li>
+                    <li>Now you bind the value of each "Hex Input" with e.g. <b>:value="parseInt(red).toString(16).toUpperCase()"</b> <br>Now you should see the according hexadecimal value in the input fields.</li>
+                    <li>Bind the result div (id="result") to:<br>
+                    <b>:style="'background-color:#' + parseInt(red).toString(16) + parseInt(green).toString(16) + parseInt(blue).toString(16)"</b>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky text-sm">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

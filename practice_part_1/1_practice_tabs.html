@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Course Alpine.js - Tabs Example</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            Alpine.js challenge: Simple Tabs
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-2/5">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <b>Objectives:</b>
+                    <ol class="mb-0 mt-1">
+                        <li class="mb-1">Change content under the tabs by clicking on them</li>
+                        <li class="mb-1">Tab 1 shows by default</li>
+                        <li class="mb-0">The active Tab has a darker color</li>
+                    </ol>
+                </div>
+
+                <section class="mt-8">
+                    <span class="px-5 py-3 rounded-xl rounded-b cursor-pointer bg-gray-400">Tab 1</span>
+                    <span class="px-5 py-3 rounded-xl rounded-b cursor-pointer bg-gray-200 hover:bg-gray-300">Tab 2</span>
+                    <span class="px-5 py-3 rounded-xl rounded-b cursor-pointer bg-gray-200 hover:bg-gray-300">Tab 3</span>
+                    <div id="tab1Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                        <b>This ist the content of Tab 1:</b><br>
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, odio?
+                    </div>
+                    <div id="tab2Content" class="mt-4 ml-2 block-inline" style="width: 350px; display: none;">
+                        <b>This ist the content of Tab 2:</b><br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, libero? Debitis praesentium enim numquam provident suscipit, aliquid nisi illo eveniet iure, ex magnam quas nihil?
+                    </div>
+                    <div id="tab3Content" class="mt-4 ml-2 block-inline" style="width: 350px; display: none;">
+                        <b>This ist the content of Tab 3:</b><br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab quidem at ex. Quos sit repellendus est.
+                    </div>
+                </section>
+                
+
+
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-3/5">
+                <h2 class="mt-0">Instructions</h2>
+                <h3 class="mt-0">Change Tab content upon click on Tab</h3>
+                <ol>
+                    <li>Give the surrounding section a <b>x-data="{tab : 1}"</b>, to determine the default active tab.</li>
+                    <li>Remove the <i>display:none </i> from <i>tab2Content</i> and <i>tab3Content</i>.</li>
+                    <li>Make all 3 tab contents <b>depend on the key "tab"</b>, by using <b>x-show</b>, e.g. in <i>tab1Content</i>:<br>
+                    <b>x-show="tab == 2"</b>
+                    </li>
+                    <li>Test, if the tab changes upon changing the object: <i>tab</i>.</li>
+                    <li>Give each "Tab span" an <i>@click</i> to change the object "tab", e.g. <b>@click="tab=1"</b></li>
+                    <li>Test if you can change the tab content with clicking on the tabs.</li>
+                </ol>
+                <h3 class="mt-0">Change the active tab to darker color without hover</h3>
+                <ol>
+                    <li>You need 3 more properties in your object: One for the tab base styles, eg. <b>tabClasses</b>, <b>tabNormalColors</b> and <b>tabHiColor</b>.</li>
+                    <li>Extract the tab base classes into <b>tabClasses</b>. Don't forget a space at the end.</li>
+                    <li>Extract the normal tab color classes (together with the hover class) into <b>tabNormalColors</b>.</li>
+                    <li>Extract the tab higlight color class into <b>tabHiColor</b>.</li>
+                    <li>After extracting remove all remaining classes from the tabs and bind the class attributes of the 3 Tabs with a colon (:).</li>
+                    <li>Concatenate in the class attibutes of the normal tabs the <b><i>tabClasses</i></b> with either <b><i>tabNormalColors</i></b>, or with <b><i>tabHiColor</i></b> if the current tab is selected.</li>
+                    <li>Use a <b>ternary expression</b> for this, e.g.:<br>
+                        <b><i>:class="tab == 1 ? tabClasses + tabHiColor : tabClasses + tabNormalColors"</i></b></li>
+                    <li>Test if everything works.</li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>
