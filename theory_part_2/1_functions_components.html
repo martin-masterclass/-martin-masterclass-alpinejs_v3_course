@@ -40,27 +40,77 @@
                 <!-- Example 1: Simple alert call with @click -->
                 <h3><b>Example 1:</b> Simple alert call with @click</h3>
                 <section>
-                    <button class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                    <button
+                    x-data
+                    @click="alert('alert')"
+                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
                         Trigger Alert
                     </button>
                 </section>
 
+                <script>
+
+                    function myComponent(startName = '') {
+                        return {
+
+                            myName: startName,
+
+                            hello() {
+                                alert('Hello ' + this.myName);
+                            },
+
+                            hello_param(hello_name = '') {
+                                alert('Hello ' + hello_name);
+                            },
+                            
+                            sayMyName() {
+                                if (this.myName != '') {
+                                  alert('Are you ' + this.myName + '?');
+                                  this.myName = '';
+                                }
+                                
+                            }                          
+                        }
+
+                    }
+
+
+                </script>
+                
                 <!-- Example 2: @click -->
                 <h3><b>Example 2:</b> Call a function on @click</h3>
                 <section>
-                    <button class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                    <button
+                    x-data="myComponent('Tom')"
+                    @click="hello()"
+                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
                         Say Hello!
+                    </button>
+                </section>
+                <!-- Pass Param directly into method -->
+                <section>
+                    <button
+                    x-data="myComponent()"
+                    @click="hello_param('Alex')"
+                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                        Say Hello (with param)!
                     </button>
                 </section>
 
                 <!-- Example 3: @click show name from Input -->
                 <h3><b>Example 3:</b> Reuse Component and use "this." for object values</h3>
-                <section>
-                    <button class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                <section
+                    x-data="myComponent()"
+                >
+                    <button
+                    @click="sayMyName()"
+                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
                         SAY MY NAME !!!
                     </button>
-                    <form class="inline">
-                       <input type="text" placeholder="Enter Name" class="ml-2"> 
+                    <form @submit.prevent="sayMyName" class="inline">
+                       <input
+                       x-model="myName" 
+                       type="text" placeholder="Enter Name" class="ml-2"> 
                     </form>
                 </section>
 
