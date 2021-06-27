@@ -16,6 +16,7 @@
         .duration-4000 {
             transition-duration: 4s;
         }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
@@ -47,6 +48,7 @@
                     <!-- Submenu -->
                     <div
                     x-show="isOpen"
+                    x-cloak
                     x-transition:enter="transition duration-4000"
                     x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100"
