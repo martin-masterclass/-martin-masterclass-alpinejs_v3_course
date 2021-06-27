@@ -42,6 +42,7 @@
                         class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
                         <div 
                         x-show="visible"
+                        x-transition
                         class="w-24 h-24 bg-yellow-500"></div>
                     </div>
                     <div class="text-sm mt-1">Use only <b>x-transition</b> standalone</div>
@@ -56,6 +57,7 @@
                         class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
                         <div 
                         x-show="visible"
+                        x-transition.duration.5000ms
                         class="w-24 h-24 bg-blue-500"></div>
                     </div>
                     <div class="text-sm mt-1">Use <b>x-transition.duration.5000ms</b>.<br>Observe how the fading-in is much faster than fading-out.<br>Time of the recording the fade-in is in 2500ms and the fade-out in 5000ms.<br>Should be the other way around.<br>Wrote to Caleb about this.<br>Maybe the time you see this lecture, it will be correct.</div>
@@ -70,6 +72,8 @@
                         class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
                         <div 
                         x-show="visible"
+                        x-transition:enter.duration.600ms
+                        x-transition:leave.duration.300ms
                         class="w-24 h-24 bg-green-500"></div>
                     </div>
                     <div class="text-sm mt-1">
@@ -85,9 +89,13 @@
                 <section class="h-32 flex" x-data="{ visible: false }">
                     <div>
                         <button
+                        @mouseenter="visible = true"
+                        @mouseleave="visible = false" 
                         class="px-2 py-1 mr-8 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Show Menu</button>
                         <div 
                         x-show="visible"
+                        x-transition:enter.duration.500ms
+                        x-transition:leave.duration.200ms.delay.3000ms
                         class="w-24 h-16 bg-blue-200 p-1">This is a submenu</div>
                     </div>
                     <div
@@ -110,6 +118,8 @@
                         class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
                         <div 
                         x-show="visible"
+                        x-transition:enter.duration.1000ms.scale.0
+                        x-transition:leave.duration.600ms.scale.0
                         class="w-24 h-24 bg-gray-400"></div>
                     </div>
                     <div class="text-sm mt-1">
@@ -131,6 +141,7 @@
                         class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
                         <div 
                         x-show="visible"
+                        x-transition:enter.scale.0.origin.top.duration.1000ms
                         class="w-24 h-24 bg-red-400"></div>
                     </div>
                 </section>
