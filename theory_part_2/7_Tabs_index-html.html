@@ -51,7 +51,24 @@
                     </div>
                 </section>
                 <!-- Dynamic Tabs here -->
+                <section
+                x-data="dynamicTabs()"
+                class="mt-8">
+                    <template x-for="(myTab, index) in myTabs">
+                        <span 
+                        x-text="myTab.title"
+                        @click="tab=index" :class="tab == index ? tabClasses + tabHiColor : tabClasses + tabNormalColors"></span> 
+                    </template>
+                   
+                    <template x-for="(myTab, index) in myTabs">
+                        <div 
+                        x-html="myTab.body"
+                        x-show="tab == index" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                        </div>
+                    </template>
 
+
+                </section>
 
             </div>
             <div id="right" class="mt-10 lg:mt-0 lg:w-3/5">
@@ -84,6 +101,24 @@
                 tabClasses : 'px-5 py-3 mr-1 rounded-xl rounded-b cursor-pointer ',
                 tabNormalColors: 'bg-gray-200 hover:bg-gray-300',
                 tabHiColor: 'bg-gray-400',
+                myTabs : [
+                    {
+                        title : "Description",
+                        body: "<div class='flex'><img class='mr-2' src='https://placekitten.com/g/150/150'><span>Super nice cat!</span></div>"
+                    },
+                    {
+                        title : "Specifics",
+                        body: "<b>Weight:</b> 3kg"
+                    },
+                    {
+                        title : "Description2",
+                        body: "<div class='flex'><img class='mr-2' src='https://placekitten.com/g/200/150'><span>Super nice cat!</span></div>"
+                    },
+                    {
+                        title : "Specifics2",
+                        body: "<b>Weight:</b> 3kg"
+                    },
+                ],
             }
         }
     </script>
