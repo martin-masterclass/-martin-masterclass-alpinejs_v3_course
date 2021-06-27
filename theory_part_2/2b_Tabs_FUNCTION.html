@@ -32,24 +32,20 @@
                 </div>
 
                 <section
-                x-data="{ tab: 1,
-                            tabClasses : 'px-5 py-3 rounded-xl rounded-b cursor-pointer ',
-                            tabNormalColors: 'bg-gray-200 hover:bg-gray-300',
-                            tabHiColor: 'bg-gray-400',
-                }"
+                x-data="dynamicTabs()"
                 class="mt-8">
-                    <span @click="tab=1" :class="tab == 1 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
-                    <span @click="tab=2" :class="tab == 2 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 2</span>
-                    <span @click="tab=3" :class="tab == 3 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 3</span>
-                    <div x-show="tab == 1" id="tab1Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                    <span @click="tab=0" :class="tab == 0 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
+                    <span @click="tab=1" :class="tab == 1 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 2</span>
+                    <span @click="tab=2" :class="tab == 2 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 3</span>
+                    <div x-show="tab == 0" id="tab1Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
                         <b>This ist the content of Tab 1:</b><br>
                         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, odio?
                     </div>
-                    <div x-show="tab == 2" id="tab2Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                    <div x-show="tab == 1" id="tab2Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
                         <b>This ist the content of Tab 2:</b><br>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, libero? Debitis praesentium enim numquam provident suscipit, aliquid nisi illo eveniet iure, ex magnam quas nihil?
                     </div>
-                    <div x-show="tab == 3" id="tab3Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                    <div x-show="tab == 2" id="tab3Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
                         <b>This ist the content of Tab 3:</b><br>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab quidem at ex. Quos sit repellendus est.
                     </div>
