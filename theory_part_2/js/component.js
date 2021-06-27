@@ -1,17 +1,23 @@
 function myComponent(startName = '') {
     return {
 
-        name: startName,
+        myName: startName,
 
-        hello(name = '') {
-            alert('hello ' + name );
+        hello() {
+            alert('Hello ' + this.myName);
         },
 
+        hello_param(hello_name = '') {
+            alert('Hello ' + hello_name);
+        },
+        
         sayMyName() {
-            alert('Are you ' + this.name + '?');
-            this.name = '';
-        }
-
+            if (this.myName != '') {
+              alert('Are you ' + this.myName + '?');
+              this.myName = '';
+            }
+            
+        }                          
     }
 }
 
