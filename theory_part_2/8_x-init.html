@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <script src="js/cat_data.js"></script>
     <style>
         [x-cloak] { display: none !important; }
     </style>
-    <title>x-init - Tabs Example - Alpinejs</title>
+    <title>x-init - Inject data</title>
 </head>
 <body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
     <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
@@ -34,15 +35,16 @@
                     </ol>
                 </div>
 
-                <!-- Cats 1 -->
+                <!-- Cat 1 -->
                 <section
                 x-data="dynamicTabs()"
                 x-cloak
-                class="mt-8 h-48">
+                x-init="myTabs = cat_1"
+                class="mt-8">
                     <template x-for="(myTab, index) in myTabs">
                         <span 
                         x-text="myTab.title" 
-                        @click="tab=index" :class="tab == index ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
+                        @click="tab=index; myTabs = cat_1" :class="tab == index ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
                     </template>
 
                     <template x-for="(myTab, index) in myTabs">
@@ -53,15 +55,16 @@
                     </template>
                 </section>
 
-                <!-- Cats 2 -->
+                <!-- Cat 2 -->
                 <section
                 x-data="dynamicTabs()"
                 x-cloak
+                x-init="myTabs = cat_2"
                 class="mt-8">
                     <template x-for="(myTab, index) in myTabs">
                         <span 
                         x-text="myTab.title" 
-                        @click="tab=index" :class="tab == index ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
+                        @click="tab=index; myTabs = cat_2" :class="tab == index ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
                     </template>
 
                     <template x-for="(myTab, index) in myTabs">
@@ -87,6 +90,7 @@
                     <li>Duplicate the array with the data in the external js file and give it a different name and different data.</li>
                     <li>Now initialize each of the tab instances with different data by using <b>x-init</b>.<br>
                     E.g.: <b>x-init="myTabs = cat2"</b></li>
+                    <li>Optionally you can give the first tabs a fixed height, e.g. with the class <b>h-32</b>.</li>
                 </ol>
                 <h3 class="mt-0">Refreshing of loaded data</h3>
                 <ul>
@@ -108,16 +112,6 @@
                 tabClasses : 'px-5 py-3 rounded-xl rounded-b cursor-pointer ',
                 tabNormalColors: 'bg-gray-200 hover:bg-gray-300',
                 tabHiColor: 'bg-gray-400',
-                myTabs : [
-                    {
-                        title : "Description",
-                        body: "<div class='flex'><img class='mr-2' src='https://placekitten.com/g/150/150'><span>Super nice cat!</span></div>"
-                    },
-                    {
-                        title : "Specifics",
-                        body: "<b>Weight:</b> 3kg"
-                    },
-                ],
             }
         }
     </script>
