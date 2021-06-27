@@ -31,38 +31,55 @@
                     </ol>
                 </div>
 
+                <script>
+                    function colorslider() {
+
+                        return {
+                            red: '128',
+                            green: '128',
+                            blue: '128',
+
+                            conv(color) {
+                                color = parseInt(color).toString(16).toUpperCase(); // conversion to hex value
+                                if (color.length == 1) { color = "0" + color; }
+                                return color;
+                            }
+
+                        }
+
+
+                    }
+                </script>
+
                 <section
-                x-data="{
-                    red: '128',
-                    green: '128',
-                    blue: '128',
-                }"
+                x-data="colorslider()"
                 class="mt-8 flex items-center">
                     <div id="sliders">
                         <!-- Slider for Red -->
                         <div class="flex items-center mb-5">
                             <div class="h-5 w-5 bg-red-500 mr-3"></div>
                             <input x-model="red" id="red" min="0" max="255" type="range" class="mr-3">
-                            <input x-model="red" class="w-10 p-1 mr-3" placeholder="Dec." type="text">
-                            <input :value="parseInt(red).toString(16).toUpperCase()" class="w-10 p-1" placeholder="Hex." type="text">
+                            <input x-model="red" class="w-10 p-1 mr-3" placeholder="Dec." type="text" disabled>
+                            <input :value="conv(red)" class="w-10 p-1" placeholder="Hex." type="text" disabled>
                         </div>
                         <!-- Slider for Green -->
                         <div class="flex items-center mb-5">
                             <div class="h-5 w-5 bg-green-500 mr-3"></div>
                             <input x-model="green" id="green" min="0" max="255" type="range" class="mr-3">
-                            <input x-model="green" class="w-10 p-1 mr-3" placeholder="Dec." type="text">
-                            <input :value="parseInt(green).toString(16).toUpperCase()" class="w-10 p-1" placeholder="Hex." type="text">
+                            <input x-model="green" class="w-10 p-1 mr-3" placeholder="Dec." type="text" disabled>
+                            <input :value="conv(green)" class="w-10 p-1" placeholder="Hex." type="text" disabled>
                         </div>
                         <!-- Slider for blue-->
                         <div class="flex items-center">
                             <div class="h-5 w-5 bg-blue-500 mr-3"></div>
                             <input x-model="blue" id="blue" min="0" max="255" type="range" class="mr-3">
-                            <input x-model="blue" class="w-10 p-1 mr-3" placeholder="Dec." type="text">
-                            <input :value="parseInt(blue).toString(16).toUpperCase()" class="w-10 p-1" placeholder="Hex." type="text">
+                            <input x-model="blue" class="w-10 p-1 mr-3" placeholder="Dec." type="text" disabled>
+                            <input :value="conv(blue)" class="w-10 p-1" placeholder="Hex." type="text" disabled>
                         </div>
                     </div>
+                    <!-- Output -->
                     <div 
-                    :style="'background-color:#' + parseInt(red).toString(16) + parseInt(green).toString(16) + parseInt(blue).toString(16)" 
+                    :style="'background-color:#' + conv(red) + conv(green) + conv(blue)" 
                     id="result" class="ml-12 w-24 h-24 border border-1 border-gray-600"></div>
                 </section>
 
@@ -82,15 +99,13 @@
                     <i>:value="parseInt(green).toString(16).toUpperCase()"</i>, to just:<br>
                     <b>:value="conv(green).toUpperCase()"</b>, in order to display the calculated Hex Value in a correct way as well.
                     </li>
+                    
                 </ol>
             </div>
         </div>
-
-
-
     </div><!-- /Container -->
     <!-- footer -->
-    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky text-sm">
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
         This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
     </div>
 </body>
