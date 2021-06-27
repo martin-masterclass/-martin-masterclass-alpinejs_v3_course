@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Functions with Alpine.js</title>
+    <style>
+        input {
+            padding: 2px;
+            border: 1px solid gray;
+        }
+    </style>
+
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1 class="flex flex-wrap items-center">
+            <span>Functions usage in Alpine.js</span>
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <ul class="mb-0">
+                        <li>Outsource functionality and data into <b>components</b></li>
+                        <li>Usage of <b>@submit.prevent</b></li>
+                    </ul>
+                </div>
+
+                <!-- Example 1: Simple alert call with @click -->
+                <h3><b>Example 1:</b> Simple alert call with @click</h3>
+                <section>
+                    <button class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                        Trigger Alert
+                    </button>
+                </section><!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+                    <link rel="stylesheet" href="../css/styles.css">
+                    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+                    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+                    <title>Functions with Alpine.js</title>
+                    <style>
+                        input {
+                            padding: 2px;
+                            border: 1px solid gray;
+                        }
+                    </style>
+                
+                </head>
+                <body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+                    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+                        <div>
+                            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+                        </div>
+                        <h1 class="flex flex-wrap items-center">
+                            <span>Functions usage in Alpine.js</span>
+                            <span class="text-base ml-4">
+                                <a target="_blank" href="">See lecture on GitHub</a>
+                            </span>
+                        </h1>
+                        <div class="flex flex-col lg:flex-row lg:gap-16">
+                            <div id="left" class="lg:w-1/2">
+                                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                                    <ul class="mb-0">
+                                        <li>Outsource functionality and data into <b>components</b></li>
+                                        <li>Usage of <b>@submit.prevent</b></li>
+                                    </ul>
+                                </div>
+                
+                                <!-- Example 1: Simple alert call with @click -->
+                                <h3><b>Example 1:</b> Simple alert call with @click</h3>
+                                <section>
+                                    <button
+                                    x-data
+                                    @click="alert('alert')"
+                                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                                        Trigger Alert
+                                    </button>
+                                </section>
+                
+                                <script>
+                
+                                    function myComponent(startName = '') {
+                                        return {
+                
+                                            myName: startName,
+                
+                                            hello() {
+                                                alert('Hello ' + this.myName);
+                                            },
+                
+                                            hello_param(hello_name = '') {
+                                                alert('Hello ' + hello_name);
+                                            },
+                                            
+                                            sayMyName() {
+                                                if (this.myName != '') {
+                                                  alert('Are you ' + this.myName + '?');
+                                                  this.myName = '';
+                                                }
+                                                
+                                            }                          
+                                        }
+                
+                                    }
+                
+                
+                                </script>
+                                
+                                <!-- Example 2: @click -->
+                                <h3><b>Example 2:</b> Call a function on @click</h3>
+                                <section>
+                                    <button
+                                    x-data="myComponent('Tom')"
+                                    @click="hello()"
+                                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                                        Say Hello!
+                                    </button>
+                                </section>
+                                <!-- Pass Param directly into method -->
+                                <section>
+                                    <button
+                                    x-data="myComponent()"
+                                    @click="hello_param('Alex')"
+                                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                                        Say Hello (with param)!
+                                    </button>
+                                </section>
+                
+                                <!-- Example 3: @click show name from Input -->
+                                <h3><b>Example 3:</b> Reuse Component and use "this." for object values</h3>
+                                <section
+                                    x-data="myComponent()"
+                                >
+                                    <button
+                                    @click="sayMyName()"
+                                    class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                                        SAY MY NAME !!!
+                                    </button>
+                                    <form @submit.prevent="sayMyName" class="inline">
+                                       <input
+                                       x-model="myName" 
+                                       type="text" placeholder="Enter Name" class="ml-2"> 
+                                    </form>
+                                </section>
+                
+                                <h3>Take-Aways</h3>
+                                <ol> 
+                                    <li>To call any function with an alpine event listener (@click etc.) you need an <b>x-data</b> either in the same or at a parent element. This x-data can be even completely empty.</li>
+                                    <li>A "function" inside a component = object is a "method" which does not have the keyword "function".</li>
+                                    <li>You can call a method in a component without brackets e.g. <b>@click="sayMyName"</b> if the function <u>does not expect any parameters</u>.</li>
+                                    <li>But if a param is expected you need to use brackets: <b>@click="hello()"</b> even if a default value is defined in the function head, like so: <b>hello(name = '')</b></li>
+                                    <li>A semicolon (;) is not necessary in the function call.</li>
+                                    <li>You can outsource components into <b>files</b> for <b>reusability</b>.</li>
+                                    <li>More than one component can be in one file.</li>
+                                </ol>
+                
+                            </div>
+                            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+                                <h3 class="mt-0">Steps Example 1</h3>
+                                <ol>
+                                    <li>Place an alert with @click on the button and try to run it.</li>
+                                    <li>Add an <b>x-data</b> to the element and try again</li>
+                                </ol>
+                                <h3 class="mt-0">Steps Example 2</h3>
+                                <ol>
+                                    <li>Create a function <b>myComponent</b> at the top of document and return an empty object.</li>
+                                    <li>Call the function in the section of Example 2 like so:<br><b>x-data="myComponent()"</b></li>
+                                    <li>Place a function <b>hello()</b> in the object that does an alert.</li>
+                                    <li>Call the function like so: <b>button @click="hello" ...</b></li>
+                                </ol>
+                                <h3>Steps Example 3</h3>
+                                <ol>
+                                    <li>Copy Example 2 into Example 3 and use the same component <b>myComponent</b> in <i>x-data</i>.</li>
+                                    <li>Add a text-input.</li>
+                                    <li>Give <b>myComponent</b> a property <i>myName</i> with a default of an empty string, and bind the text-input with <b>x-model</b> to that property.</li>
+                                    <li>Create a second method <i>sayMyName()</i> in <i>myComponent</i> and concatenate the name in the alert. But make sure you use <b>this.</b> to reference the property: <b><i>name</i></b>.</li>
+                                    <li>Wrap the text-input in a form-tag. Give the form a <b>@submit.prevent="sayMyName"</b>, so the function is also triggered when you hit the ENTER key on your keyboard.</li>
+                                    <li>In the "SayMyName-Method" reset the value of "name" with <b>this.name = '';</b>, after the alert.</li>
+                                </ol>
+                                <h3>Experiments</h3>
+                                <ul>
+                                    <li>Try out to call the whole component or functions within the component with parameters.</li>
+                                </ul>
+                            </div>
+                        </div>
+                
+                
+                    </div><!-- /Container -->
+                    <!-- footer -->
+                    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+                        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+                    </div>
+                
+                
+                </body>
+                </html>
+
+                <!-- Example 2: @click -->
+                <h3><b>Example 2:</b> Call a function on @click</h3>
+                <section>
+                    <button class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                        Say Hello!
+                    </button>
+                </section>
+
+                <!-- Example 3: @click show name from Input -->
+                <h3><b>Example 3:</b> Reuse Component and use "this." for object values</h3>
+                <section>
+                    <button class="bg-gray-200 p-1 rounded hover:bg-gray-300 border border-1 border-gray-500">
+                        SAY MY NAME !!!
+                    </button>
+                    <form class="inline">
+                       <input type="text" placeholder="Enter Name" class="ml-2"> 
+                    </form>
+                </section>
+
+                <h3>Take-Aways</h3>
+                <ol> 
+                    <li>To call any function with an alpine event listener (@click etc.) you need an <b>x-data</b> either in the same or at a parent element. This x-data can be even completely empty.</li>
+                    <li>A "function" inside a component = object is a "method" which does not have the keyword "function".</li>
+                    <li>You can call a method in a component without brackets e.g. <b>@click="sayMyName"</b> if the function <u>does not expect any parameters</u>.</li>
+                    <li>But if a param is expected you need to use brackets: <b>@click="hello()"</b> even if a default value is defined in the function head, like so: <b>hello(name = '')</b></li>
+                    <li>A semicolon (;) is not necessary in the function call.</li>
+                    <li>You can outsource components into <b>files</b> for <b>reusability</b>.</li>
+                    <li>More than one component can be in one file.</li>
+                </ol>
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+                <h3 class="mt-0">Steps Example 1</h3>
+                <ol>
+                    <li>Place an alert with @click on the button and try to run it.</li>
+                    <li>Add an <b>x-data</b> to the element and try again</li>
+                </ol>
+                <h3 class="mt-0">Steps Example 2</h3>
+                <ol>
+                    <li>Create a function <b>myComponent</b> at the top of document and return an empty object.</li>
+                    <li>Call the function in the section of Example 2 like so:<br><b>x-data="myComponent()"</b></li>
+                    <li>Place a function <b>hello()</b> in the object that does an alert.</li>
+                    <li>Call the function like so: <b>button @click="hello" ...</b></li>
+                </ol>
+                <h3>Steps Example 3</h3>
+                <ol>
+                    <li>Copy Example 2 into Example 3 and use the same component <b>myComponent</b> in <i>x-data</i>.</li>
+                    <li>Add a text-input.</li>
+                    <li>Give <b>myComponent</b> a property <i>myName</i> with a default of an empty string, and bind the text-input with <b>x-model</b> to that property.</li>
+                    <li>Create a second method <i>sayMyName()</i> in <i>myComponent</i> and concatenate the name in the alert. But make sure you use <b>this.</b> to reference the property: <b><i>name</i></b>.</li>
+                    <li>Wrap the text-input in a form-tag. Give the form a <b>@submit.prevent="sayMyName"</b>, so the function is also triggered when you hit the ENTER key on your keyboard.</li>
+                    <li>In the "SayMyName-Method" reset the value of "name" with <b>this.name = '';</b>, after the alert.</li>
+                </ol>
+                <h3>Experiments</h3>
+                <ul>
+                    <li>Try out to call the whole component or functions within the component with parameters.</li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+
+
+</body>
+</html>

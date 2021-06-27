@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>x-transition - Alpine.js</title>
+    <style>
+        h3 { margin: 0;}
+        ol { margin: 5px 0 15px 0;}
+        ul#example, ul#example > li  {
+            margin:0;
+        }
+        ul#example > li {
+            list-style: none;
+        }
+        ul#example > li a {
+            color: black;
+        }
+        .duration-4000 { transition-duration: 4s; }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1 class="flex flex-wrap items-center">
+            <span>x-transition</span>
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <ul class="m-0">
+                        <li class="mb-0">Take more control with <b>x-transition:enter</b> and <b>x-transition:leave</b></li>
+                        <li class="mb-0">Define and use your own transition classes</li>
+                    </ul>
+                </div>
+
+                <!-- Example: Usage of x-transition + Tailwind Classes -->
+                <h3 class="mt-8"><b>Example:</b> Usage of x-transition + Tailwind Classes</h3>
+                <p>In this example we give a more detailed description how the transition should work, especially differences between fading-in and fading-out.</p>
+
+
+                <section x-data="{isOpen : false}" class="relative mt-8">
+                    <!-- Round Button -->
+                    <button
+                    class="mb-4 ml-44 h-12 w-12 text-center bg-yellow-500 text-gray-700 hover:bg-yellow-800 hover:text-white focus:outline-none rounded-full shadow transform transition duration-200"
+                    @click="isOpen = !isOpen"
+                    @click.outside="isOpen = false"
+                 >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                 </button>
+
+                 <!-- The Menu that we animate with transitions -->
+                <div
+                    class="absolute w-44 bg-white border rounded-lg shadow-2xl"
+                    x-show="isOpen"
+                 >
+                    <ul id="example" class="divide-y text-md">
+                       <li>
+                          <a href="#" class="block p-3 hover:bg-yellow-100">More information</a>
+                       </li>
+                       <li>
+                          <a href="#" class="block p-3 hover:bg-yellow-100">Contact</a>
+                       </li>
+                       <li>
+                          <a href="#" class="block p-3 hover:bg-yellow-100">Imprint</a>
+                       </li>
+                    </ul>
+                 </div>
+                </section>
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+
+                <h3>Example</h3>
+                <ol>
+                    <li>x-transition<b>:enter</b> contains the properties of "fading-in" = Appearance<br>
+                    x-transition<b>:leave</b> contains the properties of "fading-out" = Disappearance
+                    </li>
+                    <li>In <b>"..-start"</b> you place <b>CLASSES</b> with properties at the <b>beginning of the fading-in or fading-out.</b></li>
+                    <li>In <b>"..-end"</b> you place <b>CLASSES</b> with properties at the <b>beginning of the fading-in or fading-out.</b></li>
+                    <li class="text-sm"><b>Example:</b><br><i>
+                        x-transition:enter="transition ease-in duration-500"<br>
+                        x-transition:enter-start="transform origin-top scale-y-0 opacity-50 shadow-none"<br>
+                        x-transition:enter-end="transform origin-top scale-y-100 opacity-100 shadow-2xl"<br>
+                        x-transition:leave="transition ease-out duration-200"<br>
+                        x-transition:leave-start="transform origin-top scale-y-100 opacity-100 shadow-2xl"<br>
+                        x-transition:leave-end="transform origin-top scale-y-0 opacity-50 shadow-none"<br>
+                    </i>
+                    </li>
+                    <li>You can also rotate the button by adding a class binding of <b>:class="{'rotate-45':isOpen}"</b></li>
+                </ol>
+                <h3>Own transition classes</h3>
+                <ol>
+                    <li>You can use your own transition classes, or combine the one's of TailwindCss with your own.</li>
+                    <li>For example, if you want to have a transition length of 4 seconds, which does not exist in Tailwind, you can add your own class:<br><b>.duration-4000 {
+                        transition-duration: 4s;
+                    }</b></li>
+                </ol>
+                <h3>Reference</h3>
+                <ul>
+                    <li><a target="_blank" href="https://tailwindcss.com/docs/transition-property">Tailwinds Transition Classes</a></li>
+                    <li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property">developer.mozilla.org/en-US/docs/Web/CSS/transition-property</a>
+                    </li>
+                </ul>
+                <h3>Credit</h3>
+                <p>This example was inspired by the example given by <a target="_blank" href="https://twitter.com/shrutibalasa"><b>Shruti Balasa</b></a> on the last Alpinejs Online Conference in 2021.</p>
+            </div>
+        </div> 
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

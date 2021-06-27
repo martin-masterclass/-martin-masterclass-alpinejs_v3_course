@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>x-for: Loops with Alpine.js</title>
+    <script src="js/persons.js"></script>
+    <style>
+        ol { margin-top: 0; margin-bottom: 0;}
+        h3 { margin-bottom: 5px; margin-top: 3px;}
+
+
+        ol > li { margin-bottom: 0;}
+        xmp { margin: 1px 0; }
+        #left h3 {
+            margin-top: 17px;
+        } 
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1 class="flex flex-wrap items-center">
+            <span>x-for</span>
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <p id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    Output data (arrays with objects within) in loops
+                </p>
+                
+                <!-- Example 1: Simple Array (one dimensional) -->
+                <h3>Example 1: Correct usage with <b>only one child</b> in template</h2>
+                <section></section>
+    
+                <!-- Example 2: Using <span> and <br> -->
+                <!-- This one does NOT work correctly (only one element within template allowed) -->
+                <h3>Example 2: Incorrect because <b>2 parallel children</b> in template</h2>
+                <section></section>
+
+                <!-- Example 4: Using surrounding div -->
+                <!-- This one does NOT work correctly (only one element within template allowed) -->
+                <h3>Example 3: <b>Correction</b> of example 2 with surrounding div</h2>
+                <section></section>
+
+                <!-- Example 4: Multidimensional data with inline data -->
+                <h3>Example 4: Multidimensional data with <b>inline data</b></h2>
+                <section></section>
+
+                <!-- Example 5: Multidimensional data with inline data -->
+                <h3>Example 5: Multidimensional data with <b>outsourced data</b></h2>
+                <section></section>
+
+                <!-- Example 6: Data from another file -->
+                <h3>Example 6: Data from <b>another file</b></b></h2>
+                <section></section>                  
+
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+                <h3 class="mt-0">Example 1</h3>
+                <ol>
+                    <li>Alway use <b>template</b>, e.g.: <xmp class="inline text-xl"><template x-for="name in names"></xmp></li>
+                    <li>The actual output you can do with <b>x-text</b>: <xmp class="inline text-xl"><div x-text="name"></div></xmp></li>
+                </ol>
+                <h3>Example 2</h3>
+                <ol>
+                    <li>Do not use several <b>parallel</b> HTML tags, e.g. "span" and "br":
+                        <xmp class="inline text-xl"><span x-text="name"></span><br></xmp>
+                    </li>
+                    <li>Instead, use a <b>parent element</b>, like in Example 3:</li>
+                </ol>
+                <h3>Example 3</h3>
+                <ol>
+                    <li>With <b>e.g. a surrounding div</b> it will work:
+                        <xmp class="inline text-xl">
+<div>
+    <span x-text="name"></span><br>
+</div></xmp>
+                    </li>
+                </ol>
+                <h3>Example 4</h3>
+                <ol>
+                    <li>If you <b>nest several objects (with the same keys)</b> in an array - see sourcecode - ..</li>
+                    <li>.. the output can be done like this: <xmp class="text-xl">Name: <span x-text="person.name"></span></xmp></li>
+                </ol>
+                <h3>Example 5</h3>
+                <ol>
+                    <li>You can outsource your array with the objects (JSON), then define it like this:<br>
+                         <b><i>let personsOutsourced = [...]</i></b>
+                    </li>
+                    <li>In this case you have to reference the outsourced variable within x-data like so:
+                        <b>x-data="{ persons: personsFromFile }"</b>
+                    </li>
+                </ol>
+                <h3>Example 6</h3>
+                <ol>
+                    <li>This is <b>like Example 5</b>, only that the Variable is moved to an external file whicht can be included like this: <xmp class="text-xl"><script src="js/personsFromFile.js"></script></xmp>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

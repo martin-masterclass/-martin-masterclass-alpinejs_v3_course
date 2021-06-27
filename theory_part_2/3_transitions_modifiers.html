@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Transitions simple - Alpine.js</title>
+    <style>
+        h3 { margin: 0;}
+        ol { margin: 5px 0 15px 0;}
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1 class="flex flex-wrap items-center">
+            <span>x-transition with modifiers</span>
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <ul class="m-0">
+                        <li class="mb-0">Adjust scaling, opacity, duration, delay and scaling direction with inline modifiers together with <b>x-show</b>.</li>
+                    </ul>
+                </div>
+
+                <!-- Example 1: (Orange) Pure use transition alone -->
+                <h3 class="mt-8 text-base mb-1">Example 1: x-transition alone</h3>
+                <section style="height:140px;" class="flex mt-0" x-data="{ visible: true }">
+                    <div>
+                        <button 
+                        @click="visible = !visible"
+                        class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
+                        <div 
+                        x-show="visible"
+                        class="w-24 h-24 bg-yellow-500"></div>
+                    </div>
+                    <div class="text-sm mt-1">Use only <b>x-transition</b> standalone</div>
+                </section>
+
+                <!-- Example2: (blue) Time modifier with "duration" and milliseconds-->
+                <h3 class="mt-8 text-base mb-1">Example 2: Duration</h3>
+                <section style="height:140px;" class="h-24 flex" x-data="{ visible: true }">
+                    <div>
+                        <button 
+                        @click="visible = !visible"
+                        class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
+                        <div 
+                        x-show="visible"
+                        class="w-24 h-24 bg-blue-500"></div>
+                    </div>
+                    <div class="text-sm mt-1">Use <b>x-transition.duration.5000ms</b>.<br>Observe how the fading-in is much faster than fading-out.<br>Time of the recording the fade-in is in 2500ms and the fade-out in 5000ms.<br>Should be the other way around.<br>Wrote to Caleb about this.<br>Maybe the time you see this lecture, it will be correct.</div>
+                </section>
+
+                <!-- Example 3: (green) Time modifier with dedicated enter and leave time -->
+                <h3 class="mt-8 text-base mb-1">Example 3: Specific Durations for "in" and "out"</h3>
+                <section style="height:140px;" class="h-24 flex" x-data="{ visible: true }">
+                    <div>
+                        <button 
+                        @click="visible = !visible"
+                        class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
+                        <div 
+                        x-show="visible"
+                        class="w-24 h-24 bg-green-500"></div>
+                    </div>
+                    <div class="text-sm mt-1">
+                        <b>x-transition:enter.duration.600ms</b><br>
+                        <b>x-transition:leave.duration.300ms</b><br>
+                        Play around until it feels good.</div>
+                </section>                
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+
+                <!-- Example 4 : Delay before fading out -->
+                <h3 class="mt-8 text-base mb-1">Example 4: Delay</h3>
+                <section class="h-32 flex" x-data="{ visible: false }">
+                    <div>
+                        <button
+                        class="px-2 py-1 mr-8 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Show Menu</button>
+                        <div 
+                        x-show="visible"
+                        class="w-24 h-16 bg-blue-200 p-1">This is a submenu</div>
+                    </div>
+                    <div
+                        class="text-sm mt-1">
+                        On the button:<br>
+                        @mouseenter="visible = true"<br>
+                        @mouseleave="visible = false"<br>
+                        On the "Menu":<br>
+                        x-transition:enter.duration.500ms<br>
+                        x-transition:leave.duration.200ms<b>.delay.3000ms</b><br>
+                        >> User has 3 seconds time to do something with the submenu</div>
+                </section>
+
+                <!-- Example 5: (gray) Exclusive Opacity & Scale -->
+                <h3 class="mt-8 text-base mb-1">Example 5: Exclusive Opacity & Scale</h3>
+                <section style="height:140px;" class="h-24 flex" x-data="{ visible: true }">
+                    <div>
+                        <button 
+                        @click="visible = !visible"
+                        class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
+                        <div 
+                        x-show="visible"
+                        class="w-24 h-24 bg-gray-400"></div>
+                    </div>
+                    <div class="text-sm mt-1">
+                        Switch off scaling with opacity modifier:<br>
+                        <b>x-transition:enter.duration.1000ms.opacity</b><br>
+                        <b>x-transition:leave.duration.1000ms.opacity</b><br><br>
+                        Switch off opacity with scale modifier: (only makes sense with scale = 0)<br>
+                        <b>x-transition:enter.duration.1000ms.scale.0</b><br>
+                        <b>x-transition:leave.duration.600ms.scale.0</b>
+                    </div>
+                </section>
+
+                <!-- Example 6: Sliding from certain sides -->
+                <h3 class="mt-8 text-base mb-1">Example 6: Scaling in from certain sides</h3>
+                <section style="height:140px;" class="h-24 flex" x-data="{ visible: true }">
+                    <div>
+                        <button 
+                        @click="visible = !visible"
+                        class="px-2 py-1 mr-8 mb-2 h-8 bg-gray-200 hover:bg-gray-300 rounded focus:outline-none">Toggle visibility</button>
+                        <div 
+                        x-show="visible"
+                        class="w-24 h-24 bg-red-400"></div>
+                    </div>
+                </section>
+                <div class="text-sm mt-1">
+                    Examples:<br>
+                    x-transition:enter.scale.0.<b>origin.left.</b>duration.1000ms<br>
+                    x-transition:enter.scale.0.<b>origin.top.right.</b>duration.1000ms<br> 
+                </div>
+            </div>
+        </div> 
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

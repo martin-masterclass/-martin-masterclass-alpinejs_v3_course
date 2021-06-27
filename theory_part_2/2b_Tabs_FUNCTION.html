@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <script src="js/tabs.js"></script>
+    <title>Tabs in function - Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            Tabs refactor: FUNCTION
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-2/5">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <b>Objectives:</b>
+                    <ol class="mb-0 mt-1">
+                        <li class="mb-1">Move tabs logic into a function</li>
+                    </ol>
+                </div>
+
+                <section
+                x-data="{ tab: 1,
+                            tabClasses : 'px-5 py-3 rounded-xl rounded-b cursor-pointer ',
+                            tabNormalColors: 'bg-gray-200 hover:bg-gray-300',
+                            tabHiColor: 'bg-gray-400',
+                }"
+                class="mt-8">
+                    <span @click="tab=1" :class="tab == 1 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 1</span>
+                    <span @click="tab=2" :class="tab == 2 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 2</span>
+                    <span @click="tab=3" :class="tab == 3 ? tabClasses + tabHiColor : tabClasses + tabNormalColors">Tab 3</span>
+                    <div x-show="tab == 1" id="tab1Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                        <b>This ist the content of Tab 1:</b><br>
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, odio?
+                    </div>
+                    <div x-show="tab == 2" id="tab2Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                        <b>This ist the content of Tab 2:</b><br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, libero? Debitis praesentium enim numquam provident suscipit, aliquid nisi illo eveniet iure, ex magnam quas nihil?
+                    </div>
+                    <div x-show="tab == 3" id="tab3Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+                        <b>This ist the content of Tab 3:</b><br>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab quidem at ex. Quos sit repellendus est.
+                    </div>
+                </section>
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-3/5">
+                <h2 class="mt-0">Instructions</h2>
+                <h3 class="mt-0">Move logic into a function</h3>
+                <ol>
+                    <li>Above the section with the tabs, create a function <b>dynamicTabs()</b>.</li>
+                    <li>Copy the properties in <b>x-data</b> into the return object of the function.</li>
+                    <li>Replace the old data in <i>x-data</i> with the function call for <i>dynamicTabs()</i>.</li>
+                    <li>Test if everything still works.</li>
+                </ol>
+                <h3 class="mt-0">Move new function into external file (optional)</h3>
+                <ol>
+                    <li>Create a file <i>tabs.js</i> in the js-folder.</li>
+                    <li>Place the newly created function there.</li>
+                    <li>Change the numbering systems of the tabs,<br>so the numbering starts with "0".</li>
+                </ol>
+            </div>
+        </div>
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+
+</body>
+</html>

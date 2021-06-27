@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>Color Slider Refactor | Alpine.js</title>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1>
+            Color Slider REFACTOR
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-2/5">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <b>Objectives:</b>
+                    <ol class="mb-0 mt-1">
+                        <li class="mb-1">Move the Logic into a component</li>
+                        <li class="mb-1">Add function to correct single digit Hex Values</li>
+                    </ol>
+                </div>
+
+                <section
+                x-data="{
+                    red: '128',
+                    green: '128',
+                    blue: '128',
+                }"
+                class="mt-8 flex items-center">
+                    <div id="sliders">
+                        <!-- Slider for Red -->
+                        <div class="flex items-center mb-5">
+                            <div class="h-5 w-5 bg-red-500 mr-3"></div>
+                            <input x-model="red" id="red" min="0" max="255" type="range" class="mr-3">
+                            <input x-model="red" class="w-10 p-1 mr-3" placeholder="Dec." type="text">
+                            <input :value="parseInt(red).toString(16).toUpperCase()" class="w-10 p-1" placeholder="Hex." type="text">
+                        </div>
+                        <!-- Slider for Green -->
+                        <div class="flex items-center mb-5">
+                            <div class="h-5 w-5 bg-green-500 mr-3"></div>
+                            <input x-model="green" id="green" min="0" max="255" type="range" class="mr-3">
+                            <input x-model="green" class="w-10 p-1 mr-3" placeholder="Dec." type="text">
+                            <input :value="parseInt(green).toString(16).toUpperCase()" class="w-10 p-1" placeholder="Hex." type="text">
+                        </div>
+                        <!-- Slider for blue-->
+                        <div class="flex items-center">
+                            <div class="h-5 w-5 bg-blue-500 mr-3"></div>
+                            <input x-model="blue" id="blue" min="0" max="255" type="range" class="mr-3">
+                            <input x-model="blue" class="w-10 p-1 mr-3" placeholder="Dec." type="text">
+                            <input :value="parseInt(blue).toString(16).toUpperCase()" class="w-10 p-1" placeholder="Hex." type="text">
+                        </div>
+                    </div>
+                    <div 
+                    :style="'background-color:#' + parseInt(red).toString(16) + parseInt(green).toString(16) + parseInt(blue).toString(16)" 
+                    id="result" class="ml-12 w-24 h-24 border border-1 border-gray-600"></div>
+                </section>
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-3/5">
+                <h2 class="mt-0">Steps</h2>
+                <ol>
+                    <li>Copy the data from the section into a component = function "colorslider()"</li>
+                    <li>Replace the <b>x-data</b> of the section with a function call "colorslider()"</li>
+                    <li>Test if everything still works as before</li>
+                    <li>Create a function <b>"conv(color)"</b> (short form for 'convert') in the new component that does the parseInt(color).toString16 and returns it:<br><b>return parseInt(color).toString(16);</b></li>
+                    <li>Now you can replace in the output-div of the color e.g. <b><i>parseInt(green).toString(16)</i></b> to just <b><i>conv(green)</i></b>. Do this replacement with all 3 colors.</li>
+                    <li>Now, in the function <i>conv()</i>, before the <i>return</i> make sure, that "one-digit" Hex Values get an additional "0" at the beginning, like so:</li>
+                    <li>First add line <b>color = parseInt(color).toString(16);</b> to your script,<br>and after that you just say: <b>return color;</b></li>
+                    <li>Then - before the return - you add the "0" if needed like so:<br><b>if (color.length == 1) { color = "0" + color; }</b></li>
+                    <li>Now to make it perfect - in each slider you change second input from e.g.<br>
+                    <i>:value="parseInt(green).toString(16).toUpperCase()"</i>, to just:<br>
+                    <b>:value="conv(green).toUpperCase()"</b>, in order to display the calculated Hex Value in a correct way as well.
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky text-sm">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>

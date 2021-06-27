@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="../favicon_alpine_course.png"/>
+    <title>x-cloak - Alpine.js</title>
+    <style>
+        h3 { margin: 0;}
+        ol { margin: 5px 0 15px 0;}
+
+        .duration-4000 {
+            transition-duration: 4s;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-300 bg-no-repeat h-full relative">
+    <div class="container bg-gray-50 mx-auto shadow-sm p-4 min-h-screen relative">
+        <div>
+            <a class="absolute top-0 right-0 p-4 text-xl bg-yellow-200" href="./">One level up</a>
+        </div>
+        <h1 class="flex flex-wrap items-center">
+            <span>x-cloak</span>
+            <span class="text-base ml-4">
+                <a target="_blank" href="">See lecture on GitHub</a>
+            </span>
+        </h1>
+        <div class="flex flex-col lg:flex-row lg:gap-16">
+            <div id="left" class="lg:w-1/2">
+                <div id="new" class="bg-gray-200 p-2 rounded shadow text-lg">
+                    <ul class="m-0">
+                        <li class="mb-0"><b>x-cloak:</b> Avoid flashing of elements which are hidden by default.</li>
+                    </ul>
+                </div>
+
+                <!-- Example: Usage of x-transition + Tailwind Classes -->
+                <h3 class="mt-8"><b>Example:</b> Flashing of submenu when page loads</h3>
+                <section x-data="{isOpen : false}" class="relative mt-8">
+                    <div
+                    @click="isOpen = !isOpen"
+                    @click.away="isOpen = false"
+                    id="button" class="bg-blue-200 hover:bg-blue-300 inline-block px-2 py-1 cursor-pointer">Open Menu</div>
+                    <!-- Submenu -->
+                    <div
+                    x-show="isOpen"
+                    x-transition:enter="transition duration-4000"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition duration-1000"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="mt-2 z-10 absolute" id="submenu">
+                        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.google.com">Google</a><br>
+                        <a target="_blank" class="px-2 py-1 inline-block w-32 cursor-pointer bg-blue-200 hover:bg-blue-300" href="https://www.amazon.com">Amazon</a><br>
+                    </div>
+                </section>
+                
+
+            </div>
+            <div id="right" class="mt-10 lg:mt-0 lg:w-1/2">
+
+                <h3>Instructions</h3>
+                <ol>
+                    <li>Open Chrome Devtools, go to the "Network Tab" and disable browser caching by checking "Disable Cache".</li>
+                    <li>Reload the page and observe how the menu "flashes". This is, because the <b>x-show</b> only evaluates after Alpinejs has completed loading. To fix this, do like so:</li>
+                    <li>Go to <a target="_blank" href="https://alpinejs.dev/directives/cloak">https://alpinejs.dev/directives/cloak</a> and insert the example style into the top of this document.</li>
+                    <li>Add <b>x-cloak</b> to the div that holds the submenu.</li>
+                    <li>The flashing of the submenu on page load should be gone now.</li>
+                </ol>
+            </div>
+        </div> 
+
+
+    </div><!-- /Container -->
+    <!-- footer -->
+    <div class="bottom-0 container text-sm z-10 p-4 bottom-0 bg-red-100 mx-auto sticky">
+        This HTML document belongs to <a target="_blank" href="#">THE BEST ALPINE.JS COURSE ON THE PLANET</a>. Alpine.js is something that you HAVE to learn in 2020's! It is <b>new</b>, it is <b>modern</b>, it is <b>easy</b> and you will need it, and you love to use it in your web development career. <a href="#">CHECK OUT THE COURSE NOW!</a> Regards, Martin
+    </div>
+</body>
+</html>
